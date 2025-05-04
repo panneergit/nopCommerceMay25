@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nop-deployment
+  annotations:
+    kubernetes.io/change-cause: "First Version"
+spec:
+  minReadySeconds: 10s
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nopapp
+  strategy:
+    type: "RollingUpdate"
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      name: nopapp-pod
+      labels:
+        app: nopapp
+    spec:
+      containers:
+        - name: nop-container
+          image: panneercts/nopcommerce:latest
+          ports:
+            - name: nopcontport
+              containerPort: 80
+              protocol: "TCP"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nop-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: nopapp
+  ports:
+    - name: nop-port
+      targetPort: 80
+      port: 80
+      protocol: TCP
