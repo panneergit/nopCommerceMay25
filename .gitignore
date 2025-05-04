@@ -161,6 +161,12 @@ $RECYCLE.BIN/
 # Mac crap
 .DS_Store
 
+# Terraform Specific
+**/.terraform/*
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.pem
 
 #######################
 ## nopCommerce specific
