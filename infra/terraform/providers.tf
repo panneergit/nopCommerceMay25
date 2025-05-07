@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name = "terraform-rg"
-    storage_account_name = "terraform-backend"
+    resource_group_name = "nop-jenkins-server_group"
+    storage_account_name = "nopterraformbackend"
     container_name = "state"
     key = "workshop.tfstate"
   }
