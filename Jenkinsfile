@@ -26,10 +26,9 @@ pipeline {
 
         stage("Infra Povisioning") {
             steps {
-                sh 'cd infra/terraform' 
-                sh 'terraform init' 
-                sh 'terraform workspace new dev && terraform workspace select dev' 
-                sh 'terraform apply -var-file="dev.tfvars" -var "build_number=${BUILD_ID}" -auto-approve' 
+                sh 'cd infra/terraform && terraform init' 
+                sh 'cd infra/terraform && terraform workspace new dev && terraform workspace select dev' 
+                sh 'cd infra/terraform && terraform apply -var-file="dev.tfvars" -var "build_number=${BUILD_ID}" -auto-approve' 
             }
         }
 
