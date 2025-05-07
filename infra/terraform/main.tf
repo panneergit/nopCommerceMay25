@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "this" {
-  name = var.resource_group.name+"-${terraform.workspace}"
+  name = "${var.resource_group.name}-${terraform.workspace}"
   location = var.resource_group.location
   tags = {
     Environment = terraform.workspace
